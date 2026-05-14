@@ -21,12 +21,14 @@ jobs:
           java-version: '21'
 
       - name: Make gradlew executable
-        run: chmod +x Alpha\ Pay/gradlew
+        run: |
+          chmod +x "Alpha Pay/gradlew"
+          chmod +x "api-gateway/gradlew"
 
-      - name: Build User Service
-        working-directory: Alpha\ Pay
-        run: ./gradlew :Alpha\ Pay:build
+      - name: Build Alpha pay User Service
+        working-directory: "Alpha Pay"
+        run: ./gradlew build
 
       - name: Build API Gateway
-        working-directory: Alpha\ Pay
-        run: ./gradlew :api-gateway:build
+        working-directory: "api-gateway"
+        run: ./gradlew build
