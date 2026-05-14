@@ -20,13 +20,13 @@ jobs:
           distribution: 'temurin'
           java-version: '21'
 
-      - name: Grant permission
-        run: chmod +x gradlew
+      - name: Make gradlew executable
+        run: chmod +x Alpha\ Pay/gradlew
 
       - name: Build User Service
-        working-directory: user
-        run: ./gradlew build
+        working-directory: Alpha\ Pay
+        run: ./gradlew :user:build
 
       - name: Build API Gateway
-        working-directory: api-gateway
-        run: ./gradlew build
+        working-directory: Alpha\ Pay
+        run: ./gradlew :api-gateway:build
