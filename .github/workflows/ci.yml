@@ -25,7 +25,7 @@ jobs:
 
       - name: Build User Service
         working-directory: Alpha\ Pay
-        run: ./gradlew :user:build
+        run: ./gradlew :Alpha\ Pay:build
 
       - name: Build API Gateway
         working-directory: Alpha\ Pay
