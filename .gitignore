@@ -1,0 +1,31 @@
+# Gradle
+.gradle/
+build/
+**/build/
+
+# Gradle wrapper
+**/gradle/
+**/gradlew
+**/gradlew.bat
+
+# Env files
+**/.env
+.env
+
+# IDEs
+.idea/
+*.iml
+*.iws
+*.ipr
+out/
+
+# STS / Spring Tool Suite
+.classpath
+.project
+.settings
+.springBeans
+.sts4-cache
+bin/
+
+# VS Code
+.vscode/
