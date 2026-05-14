@@ -3,11 +3,6 @@
 build/
 **/build/
 
-# Gradle wrapper
-**/gradle/
-**/gradlew
-**/gradlew.bat
-
 # Env files
 **/.env
 .env
