@@ -32,7 +32,7 @@ public class JwtAuthenticationFilter extends AbstractGatewayFilterFactory<JwtAut
         return (exchange, chain) -> {
             ServerHttpRequest request = exchange.getRequest();
 
-            // 1. Agar request Login ya Register ki hai, toh token check mat karo (Allow pass)
+            // 1. if thw request are loging or register then will not check
             if (request.getURI().getPath().contains("/login") || request.getURI().getPath().contains("/register")) {
                 return chain.filter(exchange);
             }
@@ -59,13 +59,18 @@ public class JwtAuthenticationFilter extends AbstractGatewayFilterFactory<JwtAut
                         .parseSignedClaims(authHeader)
                         .getPayload();
 
+                String email = claims.getSubject();
+
+
+                ServerHttpRequest modifiedRequest = exchange.getRequest().mutate()
+                        .header("loggedInUserEmail", email)
+                        .build();
+
+                return chain.filter(exchange.mutate().request(modifiedRequest).build());
 
             } catch (Exception e) {
-
                 return onError(exchange, "Invalid Token or Token Expired", HttpStatus.UNAUTHORIZED);
             }
-
-            return chain.filter(exchange);
         };
     }
 
