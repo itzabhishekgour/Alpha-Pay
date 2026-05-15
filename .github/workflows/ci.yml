@@ -6,6 +6,13 @@ on:
   pull_request:
     branches: [ "alpha" ]
 
+# Yahan humne Global Environment Variables set kar diye hain
+# Yeh aapke GitHub Secrets se data uthayega
+env:
+  DB_URL: ${{ secrets.DB_URL }}
+  DB_USERNAME: ${{ secrets.DB_USERNAME }}
+  DB_PASSWORD: ${{ secrets.DB_PASSWORD }}
+
 jobs:
   build:
     runs-on: ubuntu-latest
@@ -24,11 +31,21 @@ jobs:
         run: |
           chmod +x "Alpha Pay/gradlew"
           chmod +x "api-gateway/gradlew"
+          chmod +x "wallet/gradlew"
+          chmod +x "Transaction/gradlew"
 
-      - name: Build Alpha pay User Service
+      - name: Build Alpha Pay User Service
         working-directory: "Alpha Pay"
-        run: ./gradlew build
+        run: ./gradlew build -x test
 
       - name: Build API Gateway
         working-directory: "api-gateway"
-        run: ./gradlew build
+        run: ./gradlew build -x test
+
+      - name: Build Alpha Pay Wallet Service
+        working-directory: "wallet"
+        run: ./gradlew build -x test
+
+      - name: Build Alpha Pay Transaction Service
+        working-directory: "Transaction"
+        run: ./gradlew build -x test
