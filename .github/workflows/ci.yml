@@ -6,8 +6,6 @@ on:
   pull_request:
     branches: [ "alpha" ]
 
-# Yahan humne Global Environment Variables set kar diye hain
-# Yeh aapke GitHub Secrets se data uthayega
 env:
   DB_URL: ${{ secrets.DB_URL }}
   DB_USERNAME: ${{ secrets.DB_USERNAME }}
@@ -29,10 +27,15 @@ jobs:
 
       - name: Make gradlew executable
         run: |
+          chmod +x "eureka-server/gradlew"
           chmod +x "Alpha Pay/gradlew"
           chmod +x "api-gateway/gradlew"
           chmod +x "wallet/gradlew"
           chmod +x "Transaction/gradlew"
+
+      - name: Build Eureka Server
+        working-directory: "eureka-server"
+        run: ./gradlew build -x test
 
       - name: Build Alpha Pay User Service
         working-directory: "Alpha Pay"
