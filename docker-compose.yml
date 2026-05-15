@@ -1,33 +1,69 @@
+version: '3.8'
+
 services:
+  # ==========================================
+  # SERVICE DISCOVERY (EUREKA SERVER)
+  # ==========================================
+  eureka-server:
+    build: ./eureka-server
+    container_name: eureka-server
+    ports:
+      - "8761:8761"
+    networks:
+      - alphapay-network
+
   # ==========================================
   # MICROSERVICES
   # ==========================================
   user-service:
-    build: "./Alpha Pay"   # Folder name updated
+    build: "./Alpha Pay"
+    container_name: user-service
     ports:
       - "8081:8081"
     env_file:
       - .env
+    depends_on:
+      - eureka-server
+    networks:
+      - alphapay-network
 
   wallet-service:
-    build: ./wallet       
+    build: ./wallet
+    container_name: wallet-service
     ports:
       - "8083:8083"
     env_file:
       - .env
+    depends_on:
+      - eureka-server
+    networks:
+      - alphapay-network
 
   transaction-service:
-    build: ./Transaction   # Folder name updated
+    build: ./Transaction
+    container_name: transaction-service
     ports:
       - "8082:8082"
     env_file:
       - .env
+    depends_on:
+      - eureka-server
+    networks:
+      - alphapay-network
 
   api-gateway:
-    build: ./api-gateway   # Folder name updated
+    build: ./api-gateway
+    container_name: api-gateway
     ports:
       - "8080:8080"
     depends_on:
+      - eureka-server
       - user-service
       - wallet-service
       - transaction-service
+    networks:
+      - alphapay-network
+
+networks:
+  alphapay-network:
+    driver: bridge
