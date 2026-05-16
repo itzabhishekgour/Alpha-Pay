@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Same names, but dark mode friendly HEX colors -->
+    <color name="app_background">#0F172A</color> <!-- Dark Slate Background -->
+    <color name="text_primary">#F8FAFC</color>   <!-- Off-White Text -->
+    <color name="text_secondary">#94A3B8</color> <!-- Light Grey Text -->
+</resources>
