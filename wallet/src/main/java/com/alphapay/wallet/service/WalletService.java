@@ -21,7 +21,8 @@ public class WalletService {
     private RestTemplate restTemplate;
 
 //    private final String TRANSACTION_SERVICE_URL = "http://localhost:8082/alphapay/transactions/record";
-private final String TRANSACTION_SERVICE_URL = "http://transaction-service:8082/alphapay/transactions/record";
+// private final String TRANSACTION_SERVICE_URL = "http://transaction-service:8082/alphapay/transactions/record";
+private final String TRANSACTION_SERVICE_URL = "http://transaction-service/alphapay/transactions/record";
 
     public Wallet createWalletForNewUser(Long userId) {
         //making wallet an object
@@ -69,5 +70,10 @@ private final String TRANSACTION_SERVICE_URL = "http://transaction-service:8082/
         }
 
         return updatedWallet;
+    }
+
+    public Wallet getWalletByUserId(Long userId) {
+        return walletRepository.findByUserId(userId)
+                .orElseThrow(() -> new RuntimeException("Wallet not found for user: " + userId));
     }
 }

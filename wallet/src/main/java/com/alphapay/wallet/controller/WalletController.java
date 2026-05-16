@@ -31,6 +31,13 @@ public class WalletController {
 
         Wallet updatedWallet = walletService.addMoney(userId, amount);
 
-        return ResponseEntity.ok("Successfully added " + amount + " to wallet. New Balance: " + updatedWallet.getBalance());
+        return ResponseEntity
+                .ok("Successfully added " + amount + " to wallet. New Balance: " + updatedWallet.getBalance());
+    }
+
+    @GetMapping("/{userId}/balance") // Path variable format
+    public ResponseEntity<Wallet> getBalance(@PathVariable Long userId) {
+        Wallet wallet = walletService.getWalletByUserId(userId);
+        return ResponseEntity.ok(wallet);
     }
 }
