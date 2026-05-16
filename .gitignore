@@ -1,0 +1,37 @@
+# Built-in Gradle ignores
+.gradle/
+build/
+
+# Local configuration file (contains local paths to SDK, etc.)
+local.properties
+
+# Log files
+*.log
+
+# Android Studio / IntelliJ IDEA ignores
+.idea/caches/
+.idea/libraries/
+.idea/modules.xml
+.idea/workspace.xml
+.idea/navEditor.xml
+.idea/assetWizardSettings.xml
+.idea/deploymentTargetSelector.xml
+.idea/kotlinc.xml
+
+# Device screenshot and captures
+captures/
+
+# Keystore files
+*.jks
+*.keystore
+*.pkcs12
+
+# Google Services configuration file
+# google-services.json 
+
+# NDK ignores
+.cxx/
+
+# OS generated files
+.DS_Store
+Thumbs.db
